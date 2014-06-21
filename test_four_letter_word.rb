@@ -33,13 +33,13 @@ describe WordTransformBfs do
     it "raises an error on not four letter words" do
       words_to_test  = %w(abcde abcdef abc bl)
       words_to_test.each do |word|
-        expect{@word_transform.transform_a_word_depth_first(word, word)}.to raise_error
+        expect{@word_transform.transform_a_word_breadth_first(word, word)}.to raise_error
       end
     end
     it "raises an error on transforming to four letter non words" do
       words_to_test  = %w(aaaa bazq mlnd bizq)
       words_to_test.each do |word|
-        expect{@word_transform.transform_a_word_depth_first('ball', word)}.to raise_error
+        expect{@word_transform.transform_a_word_breadth_first('ball', word)}.to raise_error
       end
     end
     it "transforms words" do
@@ -53,7 +53,7 @@ describe WordTransformBfs do
           @word_transform.four_letter_words = new_list
         end
         word_end = words_end[index]
-        transform_list = @word_transform.transform_a_word_depth_first(word_start, word_end)
+        transform_list = @word_transform.transform_a_word_breadth_first(word_start, word_end)
         expect(transform_list.length).to eq(expected_path_lengths[index])
       end
     end
